@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">MVICodelab</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="image_of_something_that_travels_at_this_speed">Image of something that travels at this speed</string>
+    <string name="speed_info_decrease">-10</string>
+    <string name="speed_info_increase">+10</string>
+</resources>
