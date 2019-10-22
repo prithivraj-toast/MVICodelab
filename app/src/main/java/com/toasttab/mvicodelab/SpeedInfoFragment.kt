@@ -46,20 +46,11 @@ class SpeedInfoFragment : MviFragment<SpeedInfoView, SpeedInfoPresenter>(), Spee
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         speed_info_seek_bar_speed.max = MAX_SPEED
-        speed_info_seek_bar_speed.setOnSeekBarChangeListener(object :
-            SeekBar.OnSeekBarChangeListener {
-            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-                if (fromUser) {
-                    eventRelay.accept(SliderMovedIntent(progress))
-                }
+        speed_info_seek_bar_speed.setOnProgressChangedListener { progress: Int, fromUser: Boolean ->
+            if (fromUser) {
+                eventRelay.accept(SliderMovedIntent(progress))
             }
-
-            override fun onStartTrackingTouch(seekBar: SeekBar?) {
-            }
-
-            override fun onStopTrackingTouch(seekBar: SeekBar?) {
-            }
-        })
+        }
 
         speed_info_btn_plus_ten.setOnClickListener {
             eventRelay.accept(PlusTenClickedIntent)
@@ -69,4 +60,16 @@ class SpeedInfoFragment : MviFragment<SpeedInfoView, SpeedInfoPresenter>(), Spee
             eventRelay.accept(MinusTenClickedIntent)
         }
     }
+}
+
+private fun SeekBar.setOnProgressChangedListener(onProgress: (Int, Boolean) -> Unit) {
+    setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+        override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+            onProgress(progress, fromUser)
+        }
+
+        override fun onStartTrackingTouch(seekBar: SeekBar?) = Unit
+
+        override fun onStopTrackingTouch(seekBar: SeekBar?) = Unit
+    })
 }
