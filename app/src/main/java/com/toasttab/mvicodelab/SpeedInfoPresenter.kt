@@ -2,6 +2,12 @@ package com.toasttab.mvicodelab
 
 import com.hannesdorfmann.mosby3.mvi.MviBasePresenter
 
+/**
+ * Because we use the Mosby MVI framework, the presenter does not have the easiest interface to test.
+ * It has a very strict and locked down interface. However, it is possible to write unit tests by mocking the view with a mocked Intent Observable.
+ * Similarly to the View, there are diminishing returns on unit testing the wiring of the intents and view models to the reducer.
+ */
+
 class SpeedInfoPresenter(private val speedInfoRepository: SpeedInfoRepository) :
     MviBasePresenter<SpeedInfoView, SpeedInfoViewModel>() {
 
