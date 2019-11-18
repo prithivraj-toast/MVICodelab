@@ -23,10 +23,6 @@ class SpeedInfoPresenterRobot(speedInfoPresenter: SpeedInfoPresenter) {
         eventRelay.accept(SliderMovedIntent(newValue))
     }
 
-    fun clickMinusButton() {
-        eventRelay.accept(MinusTenClickedIntent)
-    }
-
     fun clickPlusButton(){
         eventRelay.accept(PlusTenClickedIntent)
     }

@@ -37,8 +37,8 @@ class SpeedInfoFragment : MviFragment<SpeedInfoView, SpeedInfoPresenter>(), Spee
     override fun render(speedInfoViewModel: SpeedInfoViewModel) {
         speed_info_seek_bar_speed.progress = speedInfoViewModel.speed
         speed_info_tv_speed.text = speedInfoViewModel.speed.toString()
-        speed_info_btn_plus_ten.isEnabled = speedInfoViewModel.isIncrementEnabled
         speed_info_btn_minus_ten.isEnabled = speedInfoViewModel.isDecrementEnabled
+
         val url = when (speedInfoViewModel.closestMatchingCue) {
             VisualCue.ROCK -> "https://upload.wikimedia.org/wikipedia/commons/b/b4/Logan_Rock_Treen_closeup.jpg"
             VisualCue.SNAIL -> "https://upload.wikimedia.org/wikipedia/commons/6/69/Grapevinesnail_01.jpg"
@@ -69,10 +69,6 @@ class SpeedInfoFragment : MviFragment<SpeedInfoView, SpeedInfoPresenter>(), Spee
 
         speed_info_btn_plus_ten.setOnClickListener {
             eventRelay.accept(PlusTenClickedIntent)
-        }
-
-        speed_info_btn_minus_ten.setOnClickListener {
-            eventRelay.accept(MinusTenClickedIntent)
         }
     }
 }
